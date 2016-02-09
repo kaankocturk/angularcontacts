@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app='myapp'>
+    <div class="main" ng-controller='tablectrl'>
+      <div class="container container1">
+          <form class="form-inline input" role="form">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" ng-model='name'>
+            </div>
+            <div class="form-group">
+              <label for="number">Number:</label>
+              <input type="text" class="form-control" ng-model='number'>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="text" class="form-control" ng-model='email'>
+            </div>
+              <button type="submit" ng-click="add()" class="btn btn-success">Submit</button>
+          </form>
+          <div>
+            <label for="filter">Filter</label>
+            <input type="text" ng-model='filter'>
+          </div>
+      </div>
+      <div class="container container2">
+        <p>Click on a header to sort</p>
+        <table class="table table-striped" ng-if='contacts.length'>
+          <thead>
+            <tr><th ng-repeat='(key, value) in contacts[0]' ng-click='order(key)'>{{key}}</th></tr>
+          </thead>
+            <tbody>
+              <tr ng-repeat='(key,contact) in contacts | filter:filter track by $index'>
+                <td>{{contact.name}}</td>
+                <td>{{contact.number}}</td>
+                <td>{{contact.email}}</td>
+                <td>
+                  <button class="btn btn-danger" ng-click='delete(contact)'>Delete</button>
+                  <button class="btn btn-primary" ng-click='modal(contact)'>Update</button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+     </div>
+     <!-- Modal -->
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Update Contact</h4>
+            </div>
+            <div class="modal-body">
+              <form class="form input" role="form">
+                <div class="form-group">
+                  <label for="mname">Name:</label>
+                  <input type="text" class="form-control" ng-model='newcontact.name'>
+                </div>
+                <div class="form-group">
+                  <label for="mnumber">Number:</label>
+                  <input type="text" class="form-control" ng-model='newcontact.number'>
+                </div>
+                <div class="form-group">
+                  <label for="memail">Email:</label>
+                  <input type="text" class="form-control" ng-model='newcontact.email'>
+                </div>
+                  <button type="submit" ng-click="update(newcontact)" class="btn btn-success">Update</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-2.2.0.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.2/angular-animate.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script src='main.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+</body>
+</html>

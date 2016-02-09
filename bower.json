@@ -1,0 +1,23 @@
+{
+  "name": "angularcontacts",
+  "authors": [
+    "kaankocturk <kkocturk1@babson.edu>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "bootstrap": "~3.3.6",
+    "angular": "~1.5.0"
+  }
+}
